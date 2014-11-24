@@ -4,7 +4,10 @@ from .views import *
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'chatgrafico.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^registro/$',registro_usuarios),	
-)
+    url(r'^login/$',login_usuarios),
+    url(r'^perfil/$',perfil_usuario),
+   	url(r'^logout/$',logout_usuario),
+   	url(r'^base/$',base),
+
+  )

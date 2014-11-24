@@ -3,22 +3,114 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/static/stilos.css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 	<title>Bienvenido a TRIVIADOR</title>
 </head>
 <body>
-	<ul id="menu">
-		<li><a href=""> Registro Usuarios </a> </li>
-		<li><a href=""> Categorias </a> </li>
-		<li><a href=""> MultiJugador </a> </li>	
-		{% if user.is_anonymous %}
-		<li><a href="">Login</a></li>
-		{% endif %}
-		{% if not user.is_anonymous %}
-		<li><a href="">{{user}} LogOut</a></li>
-		{% endif %}
-	</ul>
+	<header class="cabezera container">
+		<div class="row">
+			<div class="col-x-12 col-sm-6 col-md-8 col-lg-8">
+				<h1 class="texto123">Triviador Rock</h1>
+				<h2 class="texto123">Atrevete a Ganar</h2>
+			</div>
+			<div class="link-primero hidden-xs col-sm-6 col-md-4 col-lg-4 centrar">
+				<a href=""><img src="/static/img/facebook1.png"></a>
+				<a href=""><img src="/static/img/twitter1.png"></a>
+				<a href=""><img src="/static/img/google1.png"></a>
+			</div>
+		</div>
+	</header>
+	<nav class="tamaño-navbar navbar navbars-default">
+		<div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Cambiar Navegacion</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/inicio/registro/"> Registro Usuarios </a> </li>
+					<li><a href=""> Categorias </a> </li>
+					<li><a href=""> MultiJugador </a> </li>	
+					{% if user.is_anonymous %}
+					<li><a href="/inicio/login/">Login</a></li>
+					{% endif %}
+					{% if not user.is_anonymous %}
+					<li><a href="/inicio/logout/">{{user}} LogOut</a></li>
+					{% endif %}
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutoriales <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Bootstrap</a></li>
+                            <li><a href="#">DJango</a></li>
+                            <li><a href="#">Phyton</a></li>
+                            <li><a href="#">JQuery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+	</nav>
 	{%block container%}
 
 	{%endblock %}
+	<script>window.jQuery || document.write('<script src="/static/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="/static/js/vendor/bootstrap.js"></script>
+        <script src="/static/js/main.js"></script>
 </body>
+<style type="text/css">
+body{
+	background: url('http://themodernmage.com/wp-content/uploads/2013/07/Rock.png') no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+.cabezera{
+	background-color: rgba(255,255,255,0.3);
+	line-height: 2px;
+
+}
+.cabezera h1{
+	color: black;
+    font-family: 'Tangerine', serif;
+    text-shadow: 4px 4px 4px #aaa;
+    font-size: 5em;
+}
+.cabezera h2{
+	margin-top: -30px;
+	color: black;
+    font-family: 'Tangerine', serif;
+    text-shadow: 4px 4px 4px #aaa;
+    font-size: 3em;
+}
+.tamaño-navbar{
+	color: black;
+	background-color: rgba(255,255,255,0.4);
+	margin-left: 7.5%;
+	width: 85%;
+}
+.tamaño-navbar a{
+	color: #000;
+}
+.link-primero img{
+	-webkit-transition:box-shadow 0.4s;
+
+}
+.link-primero img:hover{
+	box-shadow: 10px 10px 5px rgba(0,0,0,0.5);
+
+}
+.tamaño-navbar a{
+	font-family: arial black;
+}
+
+</style>
 </html>
