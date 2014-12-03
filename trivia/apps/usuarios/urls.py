@@ -4,10 +4,10 @@ from .views import *
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^registro/$',registro_usuarios),	
-    url(r'^login/$',login_usuarios),
-    url(r'^perfil/$',perfil_usuario),
-   	url(r'^logout/$',logout_usuario),
+    url(r'^registro/$',registro_view),
+    url(r'^login/$',login_view),	
    	url(r'^base/$',base),
-
-  )
+   	url(r'^perfil/$',base),
+   	url(r'^cerrar_sesion/$',cerrar_sesion),
+   	url(r'^activar/$',activar_cuenta),
+)

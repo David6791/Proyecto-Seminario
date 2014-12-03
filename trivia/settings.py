@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trivia.apps.usuarios',
+    'captcha',
+    'trivia.apps.preguntas',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,7 +74,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -90,4 +92,10 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 TEMPLATE_DIRS=(os.path.join(RUTA_PROYECTO, "plantillas"),)
 STATICFILES_DIRS=(os.path.join(RUTA_PROYECTO, "static"),)
-MEDIA_ROOT=(os.path.join(RUTA_PROYECTO, 'media'),)
+MEDIA_ROOT=(os.path.join(RUTA_PROYECTO, 'trivia/media'),)
+
+
+
+RECAPTCHA_PUBLIC_KEY='6Lfgnv4SAAAAACTnOIvuCAklH__XWPxlwjPRf3Gt'
+
+RECAPTCHA_PRIVATE_KEY='6Lfgnv4SAAAAAEyTtOGv4gLmKtlMXNBARdcxGrw0'

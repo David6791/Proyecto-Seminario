@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{%block container%}
+	<div class="container page">
+		<div class="row">
+			<div class="col-xs-12">
+				{% if estado %}
+					<div class="alert alert-success" role="alert">El tema se guardado Correctamente</div>
+				{% endif %}
+				<form action="" method="post">
+				<legend>{{ titulo }}</legend>
+					{{formulario.as_p}}
+					{% csrf_token %}
+					<input type="submit" name="benviar" value="Guardar Tema">
+				</form><br>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="list-group">
+					<li class="btn bg-primary btn-lg active">Lista de Temas Guardados</li><br><br>
+					{% for i in temas %}
+						<li class="list-group-item">
+						<span class="label label-default">{{i.nombre}}</span>
+							<a href="/inicio/registro_pregunta/{{i.id}}/" class="btn bg-primary btn-xs">Agregar nueva pregunta</a>
+							<a href="/tema/edit/{{i.id}}/" class="btn bg-primary btn-xs">Editar preguntas</a>
+						<span class="badge"></span>
+						</li>
+						{% empty %}
+						<h3>No existe ningun tema Guardado</h3>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

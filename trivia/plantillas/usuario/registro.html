@@ -1,9 +1,0 @@
-{%extends "base.html"%}
-{%block container%}
-<h1>Nuevo Usuario</h1>
-<form action="" method="post">
-	{{formuser.as_ul}}
-	{% csrf_token %}
-	<input type="submit" value="Enviar">
-</form>
-{%endblock%}

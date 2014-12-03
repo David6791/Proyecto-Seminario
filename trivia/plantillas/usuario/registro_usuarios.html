@@ -1,0 +1,26 @@
+{%extends "base.html"%}
+{%block container%}
+<form action="" method="post">
+	<div class="formvista container">
+		<div class="row">
+			<div class="col-xs-4"></div>
+				<div class="col-xs-8">
+					<h1>Nuevo Usuario</h1>
+						{{formulario.as_p}}
+
+						{% csrf_token %}
+						<input type="submit" value="Enviar">
+				</div>
+		</div>
+	</div>
+
+	
+</form>
+{%endblock%}
+<style type="text/css">
+	div.container{
+		border: 1px solid red;
+		width: 200px;
+		height: 300px;
+	}
+</style>
