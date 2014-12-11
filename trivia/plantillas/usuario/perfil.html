@@ -1,15 +1,45 @@
 {%extends "base.html"%}
 {%block container%}
-<h1>Perfil</h1>
 
-	<h1>Bienvenido...!!! {{nombre}} </h1>
-	<div class="container">
+	<div class="carpeta container">
 		<div class="row">
-			<div class="col-xs-12">
-				<h2>Bienvenido {{ user.get_full_name }}</h2><br>
-				<img src="/media/{{ user.perfil.avatar.url_75x75}}" alt="avatar">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-8 bg-primary registro123">
+				<h1>Sus Datos  {{user.username}} son:</h1>
+				<img src="{{ user.perfil.avatar.url_200x200}}" alt="avatar">
+				<div class="perfil">
+					<li> Nick: {{ user.username }} </li>
+					<li> Nombre: {{ user.first_name }} </li>
+					<li> Apellido: {{ user.last_name }} </li>
+					<li> Email: {{ user.email }} </li>
+					<li> Edad: {{ user.edad }} </li>
+					<li> Direccion: {{ perfil.Direccion }} </li>
+					<li> Telefono: {{ perfil.Telefono }} </li>
+					<li> Fecha Nacimiento: {{ perfil.Fecha_Nacimiento }} </li>
+					<a href="/editar_perfil/">Editar</a>				
+				</div>	
+				<a href="modificar_perfil.html"></a>
 			</div>
 		</div>
 	</div>
+<style type="text/css">
+	.registro123{
 
+		color: rgba(255,255,255,0.7);
+		border-radius: 10px;
+		margin-left: -100px;
+		box-shadow: 4px 4px 4px rgba(255,255,255,0.8);
+		width: 50%;
+		background-color:rgba(0,0,0,0.5);
+	}
+	.registro123 img{
+	}
+	.perfil{
+		margin-left: 200px;
+		margin-top: -100px;
+	}
+	.perfil li{
+		list-style: none;
+	}
+</style>
 {%endblock%}

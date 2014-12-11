@@ -2,12 +2,105 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/static/main.css">
+	<link rel="stylesheet" href="http://localhost:3000/stylesheets/style.css"/>
+	<script type="text/javascript" src="http://localhost:3000/javascripts/jquery.js"></script>
+	<script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<scrispt src="/static/js/vendor/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="http://localhost:3000/javascripts/page.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/static/main.css">
 
     <script src="/static/js/vendor/modernizr-2.6.2.min.js"></script>
 	<title>Bienvenido a TRIVIADOR</title>
 </head>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=1574469629450426&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '{1574469629450426}',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>
 <body>
 	<header class="cabezera container">
 
@@ -17,9 +110,9 @@
 				<h2 class="texto123">Atrevete a Ganar</h2>
 			</div>
 			<div class="link-primero hidden-xs col-sm-6 col-md-4 col-lg-4 centrar">
-				<a href=""><img src="/static/img/facebook1.png"></a>
-				<a href=""><img src="/static/img/twitter1.png"></a>
-				<a href=""><img src="/static/img/google1.png"></a>
+				<a href=""><img src="/media/img/facebook1.png"></a>
+				<a href=""><img src="/media/img/twitter1.png"></a>
+				<a href=""><img src="/media/img/google1.png"></a>
 			</div>
 		</div>
 	</header>
@@ -31,35 +124,45 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                  <a href="/inicio/" class="navbar-brand">Menu</a>
+                  <a href="/" class="navbar-brand">Menus</a>
             </div>
 
             <div class="menu-hor collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/inicio/registro/"> Registro Usuarios </a> </li>
-					<li><a href="/inicio/registro_tema"> Categorias </a> </li>
-					<li><a href=""> MultiJugador </a> </li>	
-					{% if user.is_anonymous %}
-					<li><a href="/inicio/login/">Login</a></li>
+                	{% if user.is_anonymous %}
+                    <li><a href="/registro/"> Registro Usuarios </a> </li>
+                    {% endif %}
+					{% if user.is_staff %}
+					<li><a href="/registro_tema"> Categorias </a> </li>
 					{% endif %}
 					{% if not user.is_anonymous %}
-					<li><a href="/inicio/cerrar_sesion/">{{user}} LogOut</a></li>
+					<li><a href="/jugar/"> MultiJugador </a> </li>
+					{% endif %}	
+					{% if user.is_anonymous %}
+					<li><a href="/login/">Login</a></li>
 					{% endif %}
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutoriales <b class="caret"></b></a>
+					{% if not user.is_anonymous %}
+					<li><a href="/cerrar_sesion/">{{user}} LogOut</a></li>
+					{% endif %}
+					{% if not user.is_anonymous %}
+					<li><a href="/perfil/">Perfil</a></li>
+					{% endif %}
+          {% if user.is_staff %}
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Bootstrap</a></li>
-                            <li><a href="#">DJango</a></li>
-                            <li><a href="#">Phyton</a></li>
-                            <li><a href="#">JQuery</a></li>
+                            <li><a href="/permisoss">Permisos</a></li>
+                            <li><a href="/permisosg">General</a></li>
                         </ul>
                     </li>
+          {% endif %}
+                    
                 </ul>
             </div>
 	</nav>
 	{%block container%}
 
 	{%endblock %}
-	<script>window.jQuery || document.write('<script src="/static/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+	<script>window.jQuery || document.write('<script src="/static/js/vendor/jqueryy-1.10.1.min.js"><\/script>')</script>
 
         <script src="/static/js/vendor/bootstrap.js"></script>
         <script src="/static/js/main.js"></script>

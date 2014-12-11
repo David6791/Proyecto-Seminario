@@ -1,0 +1,44 @@
+{%extends "base.html"%}
+{%block container%}
+<div class="container">
+	{% if estadoo %}
+		<div class="alert alert-danger">{{mensaje}}</div>
+	{% endif %}
+	{% if not estadoo %}
+	<div class="row">
+			<div class="col-xs-4"></div>
+				<div class="col-xs-8 registro123">
+					<ul class="list-group io">
+						<li class="list-group-item io">Listado de usuarios</li>
+						{% for i in usuario %}
+						<li class="list-group-item permiso">
+							<span class="label label-default">{{i.username}}</span>
+						{% for i in lista %}
+							<li class="list-group-item permiso">
+							<span class="label label-default"><a href="/permisos/agregar/">{{i}}</a></span>
+							</li>
+						{% endfor %}
+						</li>
+						{% endfor %}	
+					</ul>
+				</div>
+			</div>
+</div>
+{% endif %}
+	<style type="text/css">
+	.registro123{
+		color: rgba(255,255,255,0.7);
+		border-radius: 10px;
+		margin-left: -100px;
+		box-shadow: 4px 4px 4px rgba(255,255,255,0.8);
+		width: 60%;
+		background-color:rgba(0,0,0,0.5);
+	}
+	.registro123 li{
+		list-style: none;
+	}
+	.letras{
+		color: #000;
+	}
+</style>
+{%endblock%}

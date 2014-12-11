@@ -4,10 +4,13 @@ from .views import *
 
 urlpatterns = patterns('',
     # Examples:
+
+    url(r'^$',principal),
     url(r'^registro/$',registro_view),
     url(r'^login/$',login_view),	
-   	url(r'^base/$',base),
-   	url(r'^perfil/$',base),
+   	url(r'^jugar/$',jugar),
+   	url(r'^perfil/$',perfil_view),
    	url(r'^cerrar_sesion/$',cerrar_sesion),
-   	url(r'^activar/$',activar_cuenta),
+   	url(r'^activar/$',user_active_view),
+   	url(r'^editar_perfil/$',editar_perfil),
 )

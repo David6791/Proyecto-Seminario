@@ -3,19 +3,33 @@
 
 	<div class="container page">
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-8 registro123">
 				{% if estado %}
-					<div class="alert alert-success" role="alert">Se a registrado la pregunta</div>
+					<div class="alert alert-success" role="alert">Se a correctamente registrado la pregunta</div>
 				{% endif %}
 				<form action="" method="post">
-				<legend>{{ titulo }}</legend>
+				<legend class="letras">{{ titulo }}</legend>
 					{{formulario.as_p}}
-				<legend>{{ titulo2 }}</legend>
-				{{formulario2.as_p}}
+				<legend class="letras">{{ titulo2 }}</legend>
+					{{formulario2.as_p}}
 					{% csrf_token %}
-					<input type="submit" name="benviar" value="Regitrar">
+					<input type="submit" name="enviar" value="Guardar">
 				</form>
 			</div>
 		</div>
 	</div>
+<style type="text/css">
+	.registro123{
+		color: rgba(255,255,255,0.7);
+		border-radius: 10px;
+		margin-left: -100px;
+		box-shadow: 4px 4px 4px rgba(255,255,255,0.8);
+		width: 50%;
+		background-color:rgba(0,0,0,0.5);
+	}
+	.letras{
+		color: #fff;
+	}
+</style>
 {% endblock %}

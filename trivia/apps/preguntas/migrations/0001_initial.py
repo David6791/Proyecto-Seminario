@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='preguntas',
+            name='Pregunta',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('nombre', models.CharField(max_length=500)),
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('respuesta_correcta', models.CharField(max_length=500)),
                 ('respuesta_incorrecta', models.CharField(max_length=500)),
-                ('pregunta', models.ForeignKey(to='preguntas.preguntas')),
+                ('pregunta', models.ForeignKey(to='preguntas.Pregunta')),
             ],
             options={
             },
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='preguntas',
+            model_name='pregunta',
             name='tema',
             field=models.ForeignKey(to='preguntas.Tema_preguntas'),
             preserve_default=True,

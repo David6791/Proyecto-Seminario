@@ -9,9 +9,16 @@ class formulario_tema(ModelForm):
 class formulario_pregunta(ModelForm):
 	nombre=forms.CharField(required=True,label="Preguntas :")
 	class Meta:
-		model=preguntas
+		model=Pregunta
 		exclude=['tema']
 class formulario_respuesta(ModelForm):
 	class Meta:
 		model=Respuesta
 		exclude=["pregunta"]
+
+class PermisoForm(ModelForm):
+	class Meta:
+		model=permiso
+class PermisosgeForms(ModelForm):
+	class Meta:
+		model=permisogeneral

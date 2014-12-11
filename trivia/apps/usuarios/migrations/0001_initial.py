@@ -14,10 +14,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='perfil_registro',
+            name='Perfil',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('pais', models.CharField(max_length=b'30')),
+                ('Direccion', models.CharField(max_length=b'30')),
+                ('Telefono', models.CharField(max_length=b'30')),
+                ('Fecha_Nacimiento', models.CharField(max_length=b'30')),
                 ('avatar', trivia.apps.usuarios.thumbs.ImageWithThumbsField(upload_to=b'img_user')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],

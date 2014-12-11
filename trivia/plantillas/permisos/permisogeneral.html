@@ -1,0 +1,44 @@
+{%extends "base.html"%}
+{%block container%}
+<div class="container">
+	<div class="row">
+			<div class="col-xs-4"></div>
+				<div class="col-xs-8 registro123">
+				{% if estadoo %}
+					<div class="alert alert-success">{{mensaje}}</div>
+				{% endif %}
+				{% if estado %}
+					<div class="alert alert-success">{{mensaje}}</div>
+					
+				{% endif %}
+				{% if not estado %}
+				<h1>Dar permisos permiso</h1>
+				<form action="" method="post" accept-charset="utf-8">
+					{%csrf_token%}
+					{{form_permg.as_p}}
+					<button  type = "submit"  class = "btn btn-info" > Activar Cuenta </button>
+					<p>Si no existe permisos tiene que:  <a href="/permisoss/">Agregar</a></p>
+				</form>
+
+				
+				</div>
+				{% endif %}
+			</div>
+</div>
+	<style type="text/css">
+	.registro123{
+		color: rgba(255,255,255,0.7);
+		border-radius: 10px;
+		margin-left: -100px;
+		box-shadow: 4px 4px 4px rgba(255,255,255,0.8);
+		width: 60%;
+		background-color:rgba(0,0,0,0.5);
+	}
+	.registro123 li{
+		list-style: none;
+	}
+	.letras{
+		color: #000;
+	}
+</style>
+{%endblock%}

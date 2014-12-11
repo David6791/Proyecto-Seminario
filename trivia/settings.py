@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     'bootstrap3',
     'trivia.apps.usuarios',
     'captcha',
     'trivia.apps.preguntas',
@@ -64,7 +65,7 @@ WSGI_APPLICATION = 'trivia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'triviadb',
+        'NAME': 'triviadb4',
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
@@ -92,7 +93,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 TEMPLATE_DIRS=(os.path.join(RUTA_PROYECTO, "plantillas"),)
 STATICFILES_DIRS=(os.path.join(RUTA_PROYECTO, "static"),)
-MEDIA_ROOT=(os.path.join(RUTA_PROYECTO, 'trivia/media'),)
+MEDIA_ROOT=(os.path.join(RUTA_PROYECTO, 'media'),)
+MEDIA_ROOT=os.path.join(BASE_DIR,'trivia/media')
 
 
 

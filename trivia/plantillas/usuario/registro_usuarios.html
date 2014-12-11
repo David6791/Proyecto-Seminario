@@ -3,24 +3,33 @@
 <form action="" method="post">
 	<div class="formvista container">
 		<div class="row">
-			<div class="col-xs-4"></div>
-				<div class="col-xs-8">
-					<h1>Nuevo Usuario</h1>
-						{{formulario.as_p}}
-
-						{% csrf_token %}
-						<input type="submit" value="Enviar">
-				</div>
+			<div class="col-xs-3"></div>
+			<div class="col-xs-5 registro123" >		
+			{% load bootstrap3 %}
+			<form action="" method="post" class="form">
+			<legend>Formulario de registro</legend>
+		        {% csrf_token %}
+		        {% bootstrap_form formulario %}
+		        {% buttons %}
+		            <button type="submit" class="btn btn-primary">Registrar</button>
+		        {% endbuttons %}
+		    </form>
 		</div>
 	</div>
 
 	
 </form>
-{%endblock%}
 <style type="text/css">
+	.registro123{
+		color: rgba(255,255,255,0.7);
+		border-radius: 10px;
+		margin-left: -100px;
+		box-shadow: 4px 4px 4px rgba(255,255,255,0.8);
+		width: 50%;
+		background-color:rgba(0,0,0,0.5);
+	}
 	div.container{
-		border: 1px solid red;
-		width: 200px;
-		height: 300px;
+		
 	}
 </style>
+{%endblock%}
